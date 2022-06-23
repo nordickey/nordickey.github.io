@@ -1,0 +1,16 @@
+{
+  "name": "nordickey.github.io",
+  "short_name": "mnerv",
+  "start_url": "./",
+  "display": "standalone",
+  "description": "Personal website",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "64x64 32x32 24x24 16x16"
+    }
+  ],
+  "theme_color": "currentcolor",
+  "background_color": "#101010"
+}
