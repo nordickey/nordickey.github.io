@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 const env = {
   MODE:           process.env.NODE_ENV,
-  APP_NAME:       process.env.npm_package_name,
+  APP_NAME:       'Nordic Keyboard',
   VERSION:        process.env.npm_package_version,
   AUTHOR:         process.env.npm_package_author_name,
   DESCRIPTION:    process.env.npm_package_description,
