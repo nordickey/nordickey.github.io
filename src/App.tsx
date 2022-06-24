@@ -1,4 +1,4 @@
-import { } from 'react'
+import { BsGithub } from 'react-icons/bs'
 
 export default function App() {
   return (
@@ -9,12 +9,12 @@ export default function App() {
         </h1>
         <span className='dark:text-gray-400 text-gray-600'>Under development...</span>
       </div>
-      <div className='fixed bottom-0 right-0 py-3 px-5'>
+      <div className='fixed bottom-0 right-0 py-3 px-5 flex space-x-2'>
         <a className='mx-auto hover:underline font-light'
           href='https://github.com/nordickey'
           title='Open Github profile in a new tab'
           target='_blank'>
-            github.com
+          <BsGithub />
         </a>
       </div>
     </div>
