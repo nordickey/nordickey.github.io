@@ -9,7 +9,7 @@ export default function App() {
         </h1>
         <span className='dark:text-gray-400 text-gray-600'>Under development...</span>
       </div>
-      <div className='fixed bottom-0 right-0 py-3 px-5 flex space-x-2'>
+      <div className='fixed bottom-0 right-0 p-4 hover:text-blue-nordic'>
         <a className='mx-auto hover:underline font-light'
           href='https://github.com/nordickey'
           title='Open Github profile in a new tab'
