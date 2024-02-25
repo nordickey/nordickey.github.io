@@ -5,7 +5,7 @@ export default function App() {
     <div className='flex h-full'>
       <div className='m-auto flex flex-col space-y-1'>
         <h1 className='text-4xl'>
-          <span className='dark:text-blue-nordic text-blue-nordic-100 bg-blue-no'>Nordic</span> Keyboard
+          <span className='dark:text-blue-nordic text-blue-nordic-100 bg-blue-no'>Nordic</span>Key
         </h1>
         <span className='dark:text-gray-400 text-gray-600'>Under development...</span>
       </div>
