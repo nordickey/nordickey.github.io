@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-blue-nordic: #57C1FF;
+  --color-blue-nordic-100: #2BB1FF;
+}
 
 .default-theme {
   --bg: #141414;

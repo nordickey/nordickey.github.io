@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 const env = {
   MODE:           process.env.NODE_ENV,
@@ -19,6 +20,7 @@ const env = {
 export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
+      tailwindcss(),
       react(),
     ],
     resolve: {

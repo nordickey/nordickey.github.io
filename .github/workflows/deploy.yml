@@ -1,40 +1,45 @@
-name: Deploy to Github Pages
+name: Deploy Web
 
 on:
-  push:
-    branches: [trunk]
+  workflow_run:
+    workflows: [ "Build" ]  # This must match build.yml's name exactly
+    branches: [ "trunk" ]
+    types:
+      - completed
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
-        pnpm-version: [latest]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Download web build artifact
+        uses: actions/download-artifact@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          workflow: build.yml
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: web-dist
+          path: ./dist
 
-      - uses: pnpm/action-setup@v2.2.2
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          version: ${{ matrix.pnpm-version }}
+          path: "dist${{ steps.pages.outputs.base_path }}"
 
-      - name: Install dependencies
-        run: pnpm i --frozen-lockfile
-
-      - name: Build
-        run: |
-          pnpm build
-          touch dist/.nojekyll
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: dist     # The folder the action should deploy.
-          CLEAN: true      # Automatically remove deleted files from the deploy branch
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
