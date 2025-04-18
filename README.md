@@ -1,6 +1,6 @@
-# Nordic Keyboard
+# NordicKey
 
-Keyboard project website.
+Webiste for NordicKey projects.
 
 ## Development
 
@@ -11,12 +11,12 @@ Keyboard project website.
 
 Install packages
 
-```
+```sh
 pnpm i
 ```
 
 Run vite development server
 
-```
+```sh
 pnpm dev
 ```
