@@ -4,10 +4,10 @@ import { createRoot } from 'react-dom/client'
 import App from './App'
 import './index.css'
 
-const APP_NAME    = __VITE_ENV__.APP_NAME
-const VERSION     = __VITE_ENV__.VERSION
-const COMMIT_HASH = __VITE_ENV__.COMMIT_HASH
-const BUILD_DATE  = __VITE_ENV__.BUILD_DATE
+const APP_NAME    = import.meta.env.VITE_APP_NAME
+const VERSION     = import.meta.env.VITE_VERSION
+const COMMIT_HASH = import.meta.env.VITE_COMMIT_HASH
+const BUILD_DATE  = import.meta.env.VITE_BUILD_DATE
 
 const info = `
 ${APP_NAME} - v${VERSION}-${COMMIT_HASH.slice(0, 7)}

@@ -2,14 +2,12 @@ name: Deploy Web
 
 on:
   workflow_run:
-    workflows: [ "Build" ]  # This must match build.yml's name exactly
-    branches: [ "trunk" ]
+    workflows: ["Build"]
+    branches: ["trunk"]
     types:
       - completed
 
 permissions:
-  contents: read
-  actions: read
   pages: write
   id-token: write
 
@@ -21,6 +19,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -29,16 +28,15 @@ jobs:
       - name: Download web build artifact
         uses: actions/download-artifact@v4
         with:
-          workflow: build.yml
-          github-token: ${{ github.token }}
-          run-id: ${{ github.event.workflow_run.id }}
           name: web-dist
           path: ./dist
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "dist${{ steps.pages.outputs.base_path }}"
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
